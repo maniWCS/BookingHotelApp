@@ -5,28 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 const k_green = Color(0xFF00cccc);
 
-class HotelList extends StatefulWidget {
-  const HotelList({Key? key}) : super(key: key);
+class LondonList extends StatefulWidget {
+  const LondonList({Key? key}) : super(key: key);
 
   @override
-  State<HotelList> createState() => _HotelListState();
+  State<LondonList> createState() => _LondonListState();
 }
 
-class _HotelListState extends State<HotelList> {
+class _LondonListState extends State<LondonList> {
   List<Hotel> hotels = [
-    Hotel(
-      title: 'Haven Hall',
-      place: '5 Howard Rd, Shanklin ',
-      distance: 2,
-      review: 36,
-      picture: 'images/hotel1.jpg',
-      price: '180',
-      description:
-          'Haven Hall in Shanklin provides adults only accommodations with a bar, a shared lounge and a terrace.\nThe property is located a 13-minute walk from Olympic Stadium, 3.9 km from Victoria Park and 5.3 km from Brick Lane.\nThe property provides a 24-hour front desk and free WiFi is available throughout the property. Each room comes with air conditioning and a flat-screen TV, and certain rooms at the hotel have a safety deposit box.\nGuest rooms include a private bathroom, free toiletries and bed linen.\nO2 Arena is 6.8 km from Snoozebox Olympic Park. The nearest airport is London City Airport, 8 km from the accommodation.\nCouples in particular like the location – they rated it 8.8 for a two-person trip.',
-      photo1: 'images/hotel2.jpg',
-      photo2: 'images/hotel3.jpg',
-      photo3: 'images/hotel4.jpg',
-    ),
     Hotel(
       title: 'Safestay Holland Park',
       place: 'Holland Park Ave, London',
@@ -39,45 +26,6 @@ class _HotelListState extends State<HotelList> {
       photo1: 'images/hotel3.jpg',
       photo2: 'images/hotel1.jpg',
       photo3: 'images/hotel6.jpg',
-    ),
-    Hotel(
-      title: 'Grand Flight Hotel',
-      place: 'Portland, Manchester',
-      distance: 216,
-      review: 88,
-      picture: 'images/hotel3.jpg',
-      price: '275',
-      description:
-          'Grand Flight Hotel in Manchester provides adults only accommodations with a bar, a shared lounge and a terrace.\nThe property is located a 13-minute walk from Olympic Stadium, 3.9 km from Victoria Park and 5.3 km from Brick Lane.\nThe property provides a 24-hour front desk and free WiFi is available throughout the property. Each room comes with air conditioning and a flat-screen TV, and certain rooms at the hotel have a safety deposit box.\nGuest rooms include a private bathroom, free toiletries and bed linen.\nO2 Arena is 6.8 km from Snoozebox Olympic Park. The nearest airport is London City Airport, 8 km from the accommodation.\nCouples in particular like the location – they rated it 8.8 for a two-person trip.',
-      photo1: 'images/hotel1.jpg',
-      photo2: 'images/hotel2.jpg',
-      photo3: 'images/hotel4.jpg',
-    ),
-    Hotel(
-      title: 'The Gregory',
-      place: 'Eglantine, Belfast',
-      distance: 250,
-      review: 36,
-      picture: 'images/hotel4.jpg',
-      price: '530',
-      description:
-          'The Gregory in Belfast provides adults only accommodations with a bar, a shared lounge and a terrace.\nThe property is located a 13-minute walk from Olympic Stadium, 3.9 km from Victoria Park and 5.3 km from Brick Lane.\nThe property provides a 24-hour front desk and free WiFi is available throughout the property. Each room comes with air conditioning and a flat-screen TV, and certain rooms at the hotel have a safety deposit box.\nGuest rooms include a private bathroom, free toiletries and bed linen.\nO2 Arena is 6.8 km from Snoozebox Olympic Park. The nearest airport is London City Airport, 8 km from the accommodation.\nCouples in particular like the location – they rated it 8.8 for a two-person trip.',
-      photo1: 'images/hotel1.jpg',
-      photo2: 'images/hotel2.jpg',
-      photo3: 'images/hotel3.jpg',
-    ),
-    Hotel(
-      title: 'Dubai Marina',
-      place: 'Dubai',
-      distance: 355,
-      review: 47,
-      picture: 'images/hotel8.jpg',
-      price: '730',
-      description:
-          'Dubai Marin in Dubai provides adults only accommodations with a bar, a shared lounge and a terrace.\nThe property is located a 13-minute walk from Olympic Stadium, 3.9 km from Victoria Park and 5.3 km from Brick Lane.\nThe property provides a 24-hour front desk and free WiFi is available throughout the property. Each room comes with air conditioning and a flat-screen TV, and certain rooms at the hotel have a safety deposit box.\nGuest rooms include a private bathroom, free toiletries and bed linen.\nO2 Arena is 6.8 km from Snoozebox Olympic Park. The nearest airport is London City Airport, 8 km from the accommodation.\nCouples in particular like the location – they rated it 8.8 for a two-person trip.',
-      photo1: 'images/hotel5.jpg',
-      photo2: 'images/hotel9.jpg',
-      photo3: 'images/hotel1.jpg',
     ),
     Hotel(
       title: 'Mandalay Picton',
@@ -94,7 +42,7 @@ class _HotelListState extends State<HotelList> {
     ),
     Hotel(
       title: 'Queen Hotel',
-      place: 'Tyburnia, London',
+      place: 'Sussex Gardens, London',
       distance: 3,
       review: 13,
       picture: 'images/hotel2.jpg',
@@ -111,7 +59,7 @@ class _HotelListState extends State<HotelList> {
       distance: 5,
       review: 47,
       picture: 'images/hotel5.jpg',
-      price: '495',
+      price: '530',
       description:
           'Britania in London provides adults only accommodations with a bar, a shared lounge and a terrace.\nThe property is located a 13-minute walk from Olympic Stadium, 3.9 km from Victoria Park and 5.3 km from Brick Lane.\nThe property provides a 24-hour front desk and free WiFi is available throughout the property. Each room comes with air conditioning and a flat-screen TV, and certain rooms at the hotel have a safety deposit box.\nGuest rooms include a private bathroom, free toiletries and bed linen.\nO2 Arena is 6.8 km from Snoozebox Olympic Park. The nearest airport is London City Airport, 8 km from the accommodation.\nCouples in particular like the location – they rated it 8.8 for a two-person trip.',
       photo1: 'images/hotel4.jpg',
@@ -122,21 +70,41 @@ class _HotelListState extends State<HotelList> {
 
   @override
   Widget build(BuildContext context) {
+    var nombreHotel = hotels.length;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Hotels'),
-      // ),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: k_green,
+        title: Text(
+          'London',
+          style: GoogleFonts.nunito(
+              color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 8,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Top Destinations',
-              style: GoogleFonts.nunito(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
+            child: Row(
+              children: [
+                Text(
+                  '$nombreHotel',
+                  style: GoogleFonts.nunito(
+                      color: k_green,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  ' hotels found',
+                  style: GoogleFonts.nunito(color: Colors.black, fontSize: 15),
+                ),
+              ],
             ),
           ),
           Expanded(
@@ -175,8 +143,8 @@ class _HotelListState extends State<HotelList> {
                             height: 140,
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
-                                topLeft: const Radius.circular(18),
-                                topRight: const Radius.circular(18),
+                                topLeft: Radius.circular(18),
+                                topRight: Radius.circular(18),
                               ),
                               // color: Colors.white,
                               image: DecorationImage(
@@ -192,20 +160,11 @@ class _HotelListState extends State<HotelList> {
                             //         child: MaterialButton(
                             //           color: Colors.white,
                             //           shape: CircleBorder(),
-                            //           onPressed: () {
-                            //             // setState(() {
-                            //             //   _iconColor = k_green;
-                            //             // });
-                            //           },
-                            //           child: IconButton(
-                            //             icon: (_isFavorited
-                            //                 ? const Icon(Icons.favorite)
-                            //                 : const Icon(
-                            //                     Icons.favorite_border)),
+                            //           onPressed: () {},
+                            //           child: Icon(
+                            //             Icons.favorite_outline,
                             //             color: k_green,
-                            //             onPressed: () {
-                            //               _toggleFavorite();
-                            //             },
+                            //             size: 20,
                             //           ),
                             //         ))
                             //   ],
@@ -271,28 +230,28 @@ class _HotelListState extends State<HotelList> {
                             child: Row(
                               children: [
                                 Row(
-                                  children: const [
-                                    Icon(
+                                  children: [
+                                    const Icon(
                                       Icons.star_rate,
                                       color: k_green,
                                       size: 14,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.star_rate,
                                       color: k_green,
                                       size: 14,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.star_rate,
                                       color: k_green,
                                       size: 14,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.star_rate,
                                       color: k_green,
                                       size: 14,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.star_border,
                                       color: k_green,
                                       size: 14,

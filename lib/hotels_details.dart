@@ -25,18 +25,30 @@ class _HotelsDetailsState extends State<HotelsDetails> {
     '4',
   ];
 
+  bool _isFavorited = false;
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _isFavorited = false;
+      } else {
+        _isFavorited = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.white, //change your color here
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: k_green,
         title: Text(
           widget.hotel.title,
           style: GoogleFonts.nunito(
-              color: Colors.black, fontSize: 22, fontWeight: FontWeight.w800),
+              color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
         ),
       ),
       body: Container(
@@ -47,7 +59,7 @@ class _HotelsDetailsState extends State<HotelsDetails> {
             //   height: 10,
             // ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
+              margin: EdgeInsets.symmetric(vertical: 3.0),
               width: MediaQuery.of(context).size.width,
               height: 100,
               child: ListView(
@@ -73,196 +85,207 @@ class _HotelsDetailsState extends State<HotelsDetails> {
             //   height: 60,
             // ),
             Expanded(
-              child: Container(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Description',
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Description',
+                          style: GoogleFonts.nunito(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        IconButton(
+                          icon: (_isFavorited
+                              ? const Icon(Icons.favorite)
+                              : const Icon(Icons.favorite_border)),
+                          color: Colors.red,
+                          onPressed: () {
+                            _toggleFavorite();
+                          },
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    // Text(widget.hotel.description,
+                    //     style: GoogleFonts.nunito(
+                    //         color: Colors.black, fontSize: 15)),
+                    ExpandableText(widget.hotel.description,
+                        expandText: 'show more',
+                        collapseText: 'show less',
+                        maxLines: 3,
                         style: GoogleFonts.nunito(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontSize: 15)),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text('Your stay will include:',
+                        style: GoogleFonts.nunito(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold)),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: const [
+                              FaIcon(FontAwesomeIcons.wifi),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text('Free WiFi'),
+                              SizedBox(
+                                width: 60,
+                              ),
+                              FaIcon(FontAwesomeIcons.umbrellaBeach),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text('Sun Deck'),
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          FaIcon(FontAwesomeIcons.solidSun),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Terrace'),
+                          SizedBox(
+                            width: 70,
+                          ),
+                          FaIcon(FontAwesomeIcons.tv),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Flat-screen TV'),
+                        ],
                       ),
-                      const SizedBox(
-                        height: 5,
+                    ),
+                    // SizedBox(
+                    //   width: 60,
+                    // ),
+                    Container(
+                      width: double.infinity,
+                      // padding:
+                      //     const EdgeInsets.only(top: 20, left: 10, right: 10),
+                      margin: EdgeInsets.only(
+                        top: 20,
                       ),
-                      // Text(widget.hotel.description,
-                      //     style: GoogleFonts.nunito(
-                      //         color: Colors.black, fontSize: 15)),
-                      ExpandableText(widget.hotel.description,
-                          expandText: 'show more',
-                          collapseText: 'show less',
-                          maxLines: 3,
-                          style: GoogleFonts.nunito(
-                              color: Colors.black, fontSize: 15)),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text('Your stay will include:',
-                          style: GoogleFonts.nunito(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold)),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Column(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                FaIcon(FontAwesomeIcons.wifi),
-                                SizedBox(
-                                  width: 10,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Select Number of adults',
+                                style: GoogleFonts.nunito(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          // const SizedBox(
+                          //   width: 80,
+                          // ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              DropdownButton(
+                                value: dropdownvalue_adults,
+                                icon: const Icon(Icons.keyboard_arrow_down),
+                                elevation: 16,
+                                style:
+                                    const TextStyle(color: Colors.deepPurple),
+                                underline: Container(
+                                  height: 2,
+                                  color: Colors.deepPurpleAccent,
                                 ),
-                                Text('Free WiFi'),
-                                SizedBox(
-                                  width: 60,
-                                ),
-                                FaIcon(FontAwesomeIcons.umbrellaBeach),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text('Sun Deck'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                              ],
-                            ),
+                                items: items.map((String items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    dropdownvalue_adults = newValue!;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Select Number of children (< 4 yrs)',
+                            style: GoogleFonts.nunito(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue_children,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue_children = newValue!;
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            FaIcon(FontAwesomeIcons.solidSun),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text('Terrace'),
-                            SizedBox(
-                              width: 70,
-                            ),
-                            FaIcon(FontAwesomeIcons.tv),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text('Frat-screen TV'),
-                          ],
-                        ),
-                      ),
-                      // SizedBox(
-                      //   width: 60,
-                      // ),
-                      Container(
-                        width: double.infinity,
-                        // padding:
-                        //     const EdgeInsets.only(top: 20, left: 10, right: 10),
-                        margin: EdgeInsets.only(
-                          top: 20,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Select Number of adults',
-                                  style: GoogleFonts.nunito(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            // const SizedBox(
-                            //   width: 80,
-                            // ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                DropdownButton(
-                                  value: dropdownvalue_adults,
-                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                  elevation: 16,
-                                  style:
-                                      const TextStyle(color: Colors.deepPurple),
-                                  underline: Container(
-                                    height: 2,
-                                    color: Colors.deepPurpleAccent,
-                                  ),
-                                  items: items.map((String items) {
-                                    return DropdownMenuItem(
-                                      value: items,
-                                      child: Text(items),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownvalue_adults = newValue!;
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Select Number of children (< 4 yrs)',
-                              style: GoogleFonts.nunito(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            DropdownButton(
-                              // Initial Value
-                              value: dropdownvalue_children,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              elevation: 16,
-                              style: const TextStyle(color: Colors.deepPurple),
-                              underline: Container(
-                                height: 2,
-                                color: Colors.deepPurpleAccent,
-                              ),
-                              items: items.map((String items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(items),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropdownvalue_children = newValue!;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 35,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -281,7 +304,7 @@ class _HotelsDetailsState extends State<HotelsDetails> {
             style: TextStyle(fontSize: 18),
           ),
           style: ElevatedButton.styleFrom(
-            primary: k_green,
+            primary: Colors.amber,
             // minimumSize: const Size.fromHeight(50),
           ),
         ),

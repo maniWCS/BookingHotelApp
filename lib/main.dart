@@ -55,7 +55,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         'Booking',
         style: GoogleFonts.nunito(
-            color: Colors.black, fontSize: 22, fontWeight: FontWeight.w800),
+            color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
       ),
       actions: [
         IconButton(
@@ -74,7 +74,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       centerTitle: true,
-      backgroundColor: Colors.white,
+      backgroundColor: k_green,
     );
   }
 }

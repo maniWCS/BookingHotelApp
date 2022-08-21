@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hotel_reservation/hotel_search.dart';
 import 'package:intl/intl.dart';
 
 const k_green = Color(0xFF00cccc);
@@ -28,6 +29,20 @@ class _SearchSectionState extends State<SearchSection> {
     '5',
   ];
 
+  final myController = TextEditingController();
+
+  void clearText() {
+    myController.clear();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,11 +68,19 @@ class _SearchSectionState extends State<SearchSection> {
                         offset: Offset(1, 1),
                       ),
                     ]),
-                child: const TextField(
+                child: TextField(
+                  controller: myController,
                   decoration: InputDecoration(
-                      hintText: 'London',
+                      hintText: 'Enter your destination',
                       contentPadding: EdgeInsets.all(10),
-                      border: InputBorder.none),
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {
+                          clearText();
+                        },
+                      )),
+                  onTap: () {},
                 ),
               )),
               const SizedBox(
@@ -78,7 +101,10 @@ class _SearchSectionState extends State<SearchSection> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HotelSearch()));
+                  },
                   child: const Icon(
                     Icons.search,
                     size: 26,
